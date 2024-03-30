@@ -8,7 +8,7 @@ const PORT = Number(process.env.PORT)
 const server = express()
 server.use(express.json())
 server.use(routes)
-server.use(cors())
+server.use(cors({ origin: "*" }))
 
 async function bootstrap() {
   try {
