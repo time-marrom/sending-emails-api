@@ -8,7 +8,7 @@ const PORT = Number(process.env.PORT)
 const server = express()
 server.use(express.json())
 server.use(routes)
-server.use(cors({ origin: "*" }))
+server.use(cors({ origin: "http://localhost:3000" }))
 
 async function bootstrap() {
   try {
