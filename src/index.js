@@ -5,10 +5,17 @@ import { routes } from "./routes.js"
 
 const PORT = Number(process.env.PORT)
 
+const corsConfig = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true
+}
+
 const server = express()
 server.use(express.json())
 server.use(routes)
-server.use(cors({ origin: "http://localhost:3000" }))
+server.use(cors(corsConfig))
 
 async function bootstrap() {
   try {
