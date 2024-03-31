@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-export function send(to, name) {
+export function volunteerConfirmation(to, name) {
   transporter.sendMail({
     from: "Equipe da Simulação do Pipoca Ágil <contato@pipocaagil.com>",
     to,
