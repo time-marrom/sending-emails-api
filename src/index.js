@@ -6,9 +6,9 @@ import { routes } from "./routes.js"
 const PORT = Number(process.env.PORT)
 
 const corsConfig = {
-  origin: "http://localhost:3000",
+  origin: "*",
   optionsSuccessStatus: 200,
-  methods: "GET, POST, PUT, DELETE",
+  methods: "GET, POST",
   credentials: true
 }
 
