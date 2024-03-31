@@ -27,3 +27,20 @@ export function send(to, name) {
     `
   })
 }
+
+export function mentorConfirmation(to, name) {
+  transporter.sendMail({
+    from: "Equipe da Simulação do Pipoca Ágil <contato@pipocaagil.com>",
+    to,
+    subject: "Inscrição na inciativa “Simulação de Projetos Ágeis” confirmada!",
+    html: `
+      <p>Olá, ${name}!</p>
+      <p>Ficamos felizes em saber que você se inscreveu com sucesso para fazer parte da mentoria da Simulação!</p>
+      <p>Para ajudar as pessoas é importante que você entre no grupo de WhatsApp destinado às pessoas mentoras. Assim que entrar no grupo se apresente e fale sua área de atuação. </p>
+      <p>Clique <a href="https://chat.whatsapp.com/DnC5mWcCDg85JkTQmdogyL">aqui</a> para entrar no grupo.</p>
+      <p>Caso tenha alguma dúvida, consulte nosso FAQ no <a href="https://pipoca-agil.netlify.app/">site da Simulação</a>.</p>
+      <p>Abraços,</p>
+      <p>Equipe da Simulação do Pipoca Ágil.</p>
+    `
+  })
+}
