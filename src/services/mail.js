@@ -1,18 +1,6 @@
-import "dotenv/config"
-import nodemailer from "nodemailer"
-
-const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: Number(process.env.MAIL_PORT),
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS
-  }
-})
-
-export function volunteerConfirmation(to, name) {
+export function volunteerConfirmation(transporter, { to, name, from }) {
   transporter.sendMail({
-    from: "Equipe da Simulação do Pipoca Ágil <contato@pipocaagil.com>",
+    from: `Equipe da Simulação do Pipoca Ágil <${from}>`,
     to,
     subject: "Inscrição na inciativa “Simulação de Projetos Ágeis” confirmada!",
     html: `
@@ -28,9 +16,9 @@ export function volunteerConfirmation(to, name) {
   })
 }
 
-export function mentorConfirmation(to, name) {
+export function mentorConfirmation(transporter, { to, name, from }) {
   transporter.sendMail({
-    from: "Equipe da Simulação do Pipoca Ágil <contato@pipocaagil.com>",
+    from: `Equipe da Simulação do Pipoca Ágil <${from}>`,
     to,
     subject: "Inscrição na inciativa “Simulação de Projetos Ágeis” confirmada!",
     html: `
