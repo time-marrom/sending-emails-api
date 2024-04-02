@@ -3,7 +3,7 @@ import "dotenv/config"
 import express from "express"
 import { routes } from "./routes.js"
 
-const PORT = Number(process.env.PORT)
+const PORT = Number(process.env.PORT) || 5555
 
 const corsConfig = {
   origin: "*",

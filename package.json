@@ -5,7 +5,8 @@
   "description": "API para envio de e-mails",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "author": "Paulo Ruan",
   "repository": {
@@ -17,6 +18,11 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.18.2",
+    "google-auth-library": "^9.7.0",
+    "googleapis": "^134.0.0",
     "nodemailer": "^6.9.10"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }

@@ -1,5 +1,4 @@
 import { Router } from "express"
-import { sendMentorConfirmation } from "./controllers/mentor.js"
 import { sendVolunteerConfirmation } from "./controllers/volunteer.js"
 
 export const routes = Router()
