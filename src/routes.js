@@ -1,5 +1,6 @@
 import { Router } from "express"
 import { sendVolunteerConfirmation } from "./controllers/volunteer.js"
+import { sendMentorConfirmation } from "./controllers/mentor.js"
 
 export const routes = Router()
 
