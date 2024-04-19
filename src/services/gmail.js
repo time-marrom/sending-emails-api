@@ -7,7 +7,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN
 const REDIRECT_URI = process.env.REDIRECT_URI
 const GMAIL = process.env.GMAIL
-const FROM = process.env.FROM
+const PIPOCA = process.env.PIPOCA
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 
@@ -124,13 +124,13 @@ export async function certificate(data) {
       rejectUnauthorized: true
     },
     envelope: {
-      to: FROM,
+      to: PIPOCA,
       from: GMAIL
     }
   })
 
   const mailOptions = {
-    to: FROM,
+    to: PIPOCA,
     from: GMAIL,
     subject: `Solicitação de certificado - ${data.fullName}`,
     html: `
@@ -141,6 +141,54 @@ export async function certificate(data) {
       <p>Função: ${data.office}</p>
       <p>Cargo: ${data.role}</p>
       <p>Data: ${data.date}</p>
+    `
+  }
+
+  return new Promise((resolve, reject) => {
+    smtp.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(info)
+      }
+    })
+  })
+}
+
+export async function contact(data) {
+  const ACCESS_TOKEN = await oAuth2Client.getAccessToken()
+  const smtp = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      type: "OAuth2",
+      user: GMAIL,
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      refreshToken: REFRESH_TOKEN,
+      accessToken: ACCESS_TOKEN
+    },
+    tls: {
+      rejectUnauthorized: true
+    },
+    envelope: {
+      to: PIPOCA,
+      from: GMAIL
+    }
+  })
+
+  const mailOptions = {
+    to: PIPOCA,
+    from: GMAIL,
+    subject: `Contato - ${data.name}`,
+    html: `
+      <p>Olá! ${data.name} entrou em contato.</p>
+      <p>Segue abaixo os dados:</p>
+      <p>Nome: ${data.name}</p>
+      <p>Prefere ser contatado por: ${data.contactWith}</p>
+      <p>E-mail: ${data.email}</p>
+      <p>WhatsApp: ${data.whatsApp}</p>
+      <p>Assunto: ${data.subject}</p>
+      <p>Mensagem: ${data.message}</p>
     `
   }
 
